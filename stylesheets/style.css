@@ -21,7 +21,7 @@ body {
 .bar{
   position: fixed;
   right:30px;
-  top:10%;
+  top:30px;
 }
 .bar li{
   list-style: none;
@@ -387,7 +387,7 @@ address {
 @media (max-width: 384px){
 .bar{
   right:0;
-  top:50%;
+  top:150px;
 }
 .bar a{
   font-size: 10px;
