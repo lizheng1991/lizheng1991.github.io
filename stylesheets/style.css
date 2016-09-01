@@ -21,7 +21,7 @@ body {
 .bar{
   position: fixed;
   right:30px;
-  top:30px;
+  top:10%;
 }
 .bar li{
   list-style: none;
@@ -36,7 +36,6 @@ body {
   margin: 5px 0;
   opacity:0.5;
   color:#fff;
-
 }
 @media (min-width: 769px) {
   .sidebar {
@@ -297,6 +296,9 @@ a:hover {
 }
 }
 @media (max-width: 640px){
+.bar{
+  right:0;
+}
 .sidebar {
   width: 100%;
 }
@@ -385,7 +387,7 @@ address {
 @media (max-width: 384px){
 .bar{
   right:0;
-  bottom:30px;
+  top:70%;
 }
 .bar a{
   font-size: 10px;
