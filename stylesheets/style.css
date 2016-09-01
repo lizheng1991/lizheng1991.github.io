@@ -385,10 +385,6 @@ address {
 }
 }
 @media (max-width: 384px){
-.bar{
-  right:0;
-  top:60%;
-}
 .bar a{
   font-size: 10px;
   width:30px;
