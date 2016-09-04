@@ -18,6 +18,31 @@ body {
 .sidebar {
   display:block;
 }
+.game{
+  position:fixed;
+  width:3em;
+  height:3em;
+  right:40px;
+  top:40px;
+  background-color:#999;
+  line-height: 1em;
+  color:#fff;
+  padding:0.5em;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: all 1s;
+  -moz-transition: all 1s;  /* Firefox 4 */
+  -webkit-transition: all 1s; /* Safari 和 Chrome */
+  -o-transition: all 1s;  /* Opera */
+}
+.game a{
+  color:#fff;
+  text-decoration: none;
+}
+.game:hover{
+  opacity:1;
+  transform:scale(1.5);
+}
 .bar{
   position: fixed;
   right:30px;
@@ -98,8 +123,11 @@ a:hover {
 	
 }
 .sidebar img{
-	padding:1em;
+	padding:0em;
 	width:100%;
+  /*-webkit-border-radius: 10%; 
+  -moz-border-radius: 10%; 
+  border-radius: 10%;*/
 }
 .details{
 	margin-top:2em;
@@ -264,6 +292,9 @@ a:hover {
 .sidebar {
   padding: 2em 17px;
   width:20%;
+}
+.sidebar img{
+  padding:1em;
 }
 .sidebar h1 {
   font-size: 1.6em;
