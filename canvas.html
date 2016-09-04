@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>贪吃蛇</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			background-color: #000;
+		}
+		#canvasdiv{
+			width:500px;
+			height:500px;
+			border:15px solid black;
+			margin:0 auto;
+			background-color: #5ab333;
+		}
+		#canvas{
+			display: block;
+			margin:0 auto;
+		}
+		#start,#stop{
+			font-size: 20px;
+			width:80px;
+			height:30px;
+		}
+		#inf span{
+			display: inline-block;
+			padding-left: 50px;
+			width:100px;
+		}
+		#inf{
+			width:500px;
+			margin: 0 auto;
+		}
+		body{
+			background-color: #e8e8e8;
+		}
+	</style>
+</head>
+<body>
+	<div id="canvasdiv">
+		<canvas id="canvas"  width="500" height="500"></canvas>
+	</div>
+	<div id="inf">
+		<button id="start">开始</button>
+		<button id="stop">停止</button>
+		<span>得分：0</span>
+		<span>作者：李征</span>
+	</div>
+
+
+<script>
+window.onload=function(){
+	var start=document.getElementById("start");
+	var stop=document.getElementById("stop");
+	timer={};
+	start.onclick=function(){
+		starton();//开始按钮
+	}
+	stop.onclick=function(){
+		stopon();//结束按钮
+	}
+	
+}
+
+function starton(){//开始按钮
+	var start=document.getElementById("start");
+	start.onclick=function(){}
+
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+
+	var score=0;
+	var X=0;
+	var Y=0;
+	var vertical=0;
+	var horizontal=0;
+	//var arr=new Array();//棋盘数组
+	var queue = new Array();//队列
+	var point =[0,0];
+	queue.unshift(point);
+	var food=[-1,-1];//食物
+	//var point =[0,0];
+	//queue.unshift(point);
+	context.clearRect(0,0,500,500);
+
+	
+	document.onkeydown=function(event){//键盘选择方向
+		var e = event || window.event || arguments.callee.caller.arguments[0];
+		if(e && e.keyCode==38){ // 上
+			vertical=-1;
+			horizontal=0;
+		}
+		if(e && e.keyCode==39){ // 右
+			horizontal=1;
+			vertical=0;
+		}
+		if(e && e.keyCode==40){ // 下
+			vertical=1;
+			horizontal=0;
+		}
+		if(e && e.keyCode==37){ // 左
+			horizontal=-1;
+			vertical=0;
+		}
+		//console.log("lalal");
+		//shishi(arr);
+	};
+	//初始设置
+	context.fillStyle="#FF0000";
+	context.fillRect(0,0,25,25);
+	create(context,food);//创建新点
+	horizontal=1;
+
+	timer=setInterval(function(){//计时器启动
+		
+		//console.log(food[0]+","+food[1]);
+		X=X+horizontal;
+		Y=Y+vertical;
+		context.fillRect(X*25,Y*25,25,25);
+		var point =[X,Y];//把新点压入队列中
+		queue.unshift(point);
+
+		if(judgefood(food,queue,timer,context)){//判断是否结束，完成吃食物操作
+		
+			score++;
+			inf=document.getElementById("inf");
+			span=inf.getElementsByTagName("span");
+			span[0].innerHTML="得分："+score;
+		
+			create(context,food);//创建新点
+			//console.log("lalala");
+		}
+		else{
+			if(timer!=null){
+				var pop=queue.pop();//取出队列最后一个点
+				context.clearRect(pop[0]*25,pop[1]*25,25,25);
+			}
+			else{return 0;}
+		}
+		
+
+	},500);
+
+}
+function stopon(){//结束按钮
+	clearInterval(timer);
+	var start=document.getElementById("start");
+	start.onclick=function(){starton();}
+}
+
+
+function create(context,food){//创建新食物
+	var x=parseInt(20*Math.random());
+	var y=parseInt(20*Math.random());
+	
+	context.fillRect(x*25,y*25,25,25);
+	food[0]=x;
+	food[1]=y;
+}
+function judgefood(food,queue,timer,context){//判断是否吃到食物
+	if(queue[0][0]<0||queue[0][1]<0||queue[0][0]>19||queue[0][1]>19||eatself(queue)){
+		clearInterval(timer);//吃到障碍物
+		context.clearRect(queue[0][0]*25,queue[0][1]*25,25,25);
+		context.font="40px Arial";
+		context.fillText("You Lose!",150,200);
+		return 0;
+	}
+	else{
+		if(queue[0][0]==food[0]&&queue[0][1]==food[1]){return 1;}//吃到食物
+		else return 0;
+	}
+	
+}
+function eatself(queue){
+	for(var i=1;i<queue.length;i++){
+		if(queue[0][0]==queue[i][0]&&queue[0][1]==queue[i][1]){return 1;}
+		else return 0;
+	}
+}
+</script>
+</body>
+</html>
