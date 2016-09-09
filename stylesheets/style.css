@@ -158,12 +158,12 @@ a:hover {
 }
 .company h3{
   color: #FFF;
-  padding: 5px 100px 5px 30px;
+  padding: 5px 30px 5px 30px;
   display: inline-block;
 }
 .skills h3{
   color: #FFF;
-  padding: 5px 98px 5px 30px;
+  padding: 5px 30px 5px 30px;
   display: inline-block;
 }
 .company_details,.education_details {
@@ -252,7 +252,7 @@ a:hover {
 }
 .education  h3,.info h3{
   color: #FFF;
-  padding: 5px 100px 5px 30px;
+  padding: 5px 30px 5px 30px;
   display: inline-block;
 }
 .clr1{
@@ -327,6 +327,9 @@ a:hover {
 }
 }
 @media (max-width: 640px){
+.game{
+  display: none;
+}
 .bar{
   right:0;
 }
@@ -439,7 +442,7 @@ address {
   padding: 1em 0 0em 1em;
 }
 .company h3 ,.info h3{
-  padding: 5px 41px 5px 16px;
+  padding: 5px 15px 5px 15px;
 }
 .company_details h4, .education_details h4 {
   font-size: 0.9em;
@@ -457,7 +460,7 @@ address {
   font-size: 1em;
 }
 .skills h3 {
-  padding: 5px 60px 5px 16px;
+  padding: 5px 15px 5px 15px;
 }
 .skill1 ul, .skill2 ul {
   padding-left: 2em;
@@ -469,7 +472,7 @@ address {
   padding: 0.5em 0 0 1.5em;
 }
 .education h3 ,.info h3{
-  padding: 5px 60px 5px 16px;
+  padding: 5px 15px 5px 15px;
 }
 .copywrite p{
 	font-size:0.7em;
