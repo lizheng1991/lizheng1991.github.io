@@ -12,6 +12,17 @@ body {
   padding-top: 0px;
 }
 
+/*canvas*/
+#myCanvas1,#myCanvas1{
+  display: inline-block;
+}
+
+.input {
+  width:35px;
+}
+.disshow{
+  display: none;
+}
 .main p{text-indent:2em;}
 /*dashboard.css start*/
 .sidebar {
@@ -301,6 +312,9 @@ a:hover {
 .main {
   margin-left: 19.666667%;
   width: 80%;
+}
+#myCanvas1,#myCanvas1{
+  margin:0 auto;
 }
 }
 
