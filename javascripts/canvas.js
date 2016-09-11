@@ -2,8 +2,37 @@ window.onload=function(){
 	draw1();
 	draw2();
 }
+window.onresize = function(){
+	if(document.body.clientWidth<=367){
+		transform(0.5);
+	}
+	else if(document.body.clientWidth<=430){
+		transform(0.8);
+	}
+	else{transform(1);}
+	console.log(document.body.clientWidth);
+}
+function transform(beishu){
+	var canvas1=document.getElementById("myCanvas1");
+	var context1=canvas1.getContext("2d");
+	canvas1.width = 400*beishu;
+    canvas1.height = 400*beishu;
+    context1.save();
+	context1.scale(beishu,beishu);//缩放画布
+	draw1();
+	context1.restore();
+	var canvas2=document.getElementById("myCanvas2");
+	var context2=canvas2.getContext("2d");
+	canvas2.width = 400*beishu;
+    canvas2.height = 400*beishu;
+    context2.save();
+	context2.scale(beishu,beishu);//缩放画布
+	draw2();
+	context2.restore();
+}
+
 function draw1(){
-	var canvas=document.getElementById("myCanvas");
+	var canvas=document.getElementById("myCanvas1");
 	var context=canvas.getContext("2d");
 
 	var baseX=50,baseY=330;
@@ -19,7 +48,7 @@ function draw1(){
 	context.font ="22px 微软雅黑";
 	context.fillStyle="black";
 	context.textAlign='center';
-	context.fillText("Web前端技能",baseX+150,baseY+60);
+	context.fillText("Web前端技能",200,380);
 	context.closePath();
 	//柱子
 	y_h=2.5;//纵轴倍数
@@ -77,10 +106,10 @@ function draw1(){
 }
 
 function draw2(){
-	var canvas=document.getElementById("myCanvas");
+	var canvas=document.getElementById("myCanvas2");
 	var context=canvas.getContext("2d");
 
-	var baseX=600,baseY=200;
+	var baseX=200,baseY=200;
 	var data=[
 			{name:"工作热情",value:80},
 			{name:"专业技术",value:65},
@@ -95,7 +124,7 @@ function draw2(){
 	context.font ="22px 微软雅黑";
 	context.fillStyle="black";
 	context.textAlign='center';
-	context.fillText("个人综合能力",baseX,baseY+167);
+	context.fillText("个人综合能力",200,380);
 	context.closePath();
 	//坐标系
 	length=120;
@@ -137,7 +166,7 @@ function draw2(){
 		context.font ="14px Arial";
 		context.fillStyle="black";
 		context.textAlign='center';
-		context.fillText(data[i].name,baseX+Math.cos(Math.PI/6+i*Math.PI/3)*(length+18),baseY+Math.sin(Math.PI/6+i*Math.PI/3)*(length+18)-7);
+		context.fillText(data[i].name,baseX+Math.cos(Math.PI/6+i*Math.PI/3)*(length+25),baseY+Math.sin(Math.PI/6+i*Math.PI/3)*(length+18)+5);
 	}
 	context.closePath();
 	context.stroke();
