@@ -1,7 +1,43 @@
+var data1=[
+		{name:"HTML",value:65,color:"rgba(255,0,0,0.5)"},
+		{name:"CSS",value:75,color:"rgba(0,255,0,0.5)"},
+		{name:"JS",value:85,color:"rgba(255,0,255,0.5)"},
+		{name:"jQuery",value:55,color:"rgba(0,255,255,0.5)"}
+		];
+var data2=[
+		{name:"工作热情",value:80},
+		{name:"专业技术",value:65},
+		{name:"合作能力",value:70},
+		{name:"抗压能力",value:85},
+		{name:"学习能力",value:75},
+		{name:"潜力",value:100},
+		];
+
 window.onload=function(){
-	//draw1();
-	//draw2();
 	window.onresize();
+	var button=document.getElementById("button");
+	button.onclick=function(){
+		var form=document.getElementsByTagName("form");
+		form[0].className="";
+	}
+	var submit=document.getElementById("submit");
+	submit.onclick=function(){
+		var num=document.getElementsByName("num");
+		for(var i=0;i<num.length;i++){
+			if(num[i].value){
+				var r = /^([1]?\d{1,2})$/;　　//0-100的正整数  		 
+				if(!r.test(num[i].value)){
+					alert('填写的能力值必须是正整数');
+					return false;
+				} 
+				data2[i].value=num[i].value;
+			}
+		}
+		console.log(data2);
+		window.onresize();
+	}
+	// draw1();
+	// draw2();
 }
 window.onresize = function(){
 	if(document.body.clientWidth<=367){
@@ -11,7 +47,6 @@ window.onresize = function(){
 		transform(0.8);
 	}
 	else{transform(1);}
-	console.log(document.body.clientWidth);
 }
 function transform(beishu){
 	var canvas1=document.getElementById("myCanvas1");
@@ -37,12 +72,7 @@ function draw1(){
 	var context=canvas.getContext("2d");
 
 	var baseX=50,baseY=330;
-	var data=[
-			{name:"HTML",value:65,color:"rgba(255,0,0,0.5)"},
-			{name:"CSS",value:75,color:"rgba(0,255,0,0.5)"},
-			{name:"JS",value:85,color:"rgba(255,0,255,0.5)"},
-			{name:"jQuery",value:55,color:"rgba(0,255,255,0.5)"}
-			];
+	
 
 	//Web前端技能
 	context.beginPath();
@@ -58,14 +88,14 @@ function draw1(){
 	context.beginPath();
 	for(var i=0;i<4;i++){
 		lg=context.createLinearGradient(baseX+20+x_l*i,0,baseX+20+x_l*i+x_w,0);
-		lg.addColorStop(0,data[i].color);
+		lg.addColorStop(0,data1[i].color);
 		lg.addColorStop(0.5,"#fff");
-		lg.addColorStop(1,data[i].color);
+		lg.addColorStop(1,data1[i].color);
 		context.fillStyle=lg;
-		//context.fillStyle=data[i].color;
-		context.strokeStyle=data[i].color;
-		context.fillRect(baseX+20+x_l*i,baseY-data[i].value*y_h,x_w,data[i].value*y_h);
-		context.strokeRect(baseX+20+x_l*i,baseY-data[i].value*y_h,x_w,data[i].value*y_h);
+		//context.fillStyle=data1[i].color;
+		context.strokeStyle=data1[i].color;
+		context.fillRect(baseX+20+x_l*i,baseY-data1[i].value*y_h,x_w,data1[i].value*y_h);
+		context.strokeRect(baseX+20+x_l*i,baseY-data1[i].value*y_h,x_w,data1[i].value*y_h);
 	}
 
 	//坐标系
@@ -93,12 +123,12 @@ function draw1(){
 	context.lineTo(baseX+5,baseY-125);
 	context.strokeStyle="black";
 	context.textAlign='right';
-	context.fillText("50",baseX-2,baseY-130);
+	context.fillText("50",baseX-2,baseY-132);
 	context.font ="15px Arial";
 	context.fillStyle="black";
 	context.textAlign='center';
 	for(var i=0;i<4;i++){
-		context.fillText(data[i].name,baseX+20+x_l*i+x_w/2,baseY+5);
+		context.fillText(data1[i].name,baseX+20+x_l*i+x_w/2,baseY+5);
 	}
 	context.closePath();
 	context.stroke();
@@ -111,15 +141,7 @@ function draw2(){
 	var context=canvas.getContext("2d");
 
 	var baseX=200,baseY=200;
-	var data=[
-			{name:"工作热情",value:80},
-			{name:"专业技术",value:65},
-			{name:"合作能力",value:70},
-			{name:"抗压能力",value:85},
-			{name:"学习能力",value:75},
-			{name:"潜力",value:100},
-			];
-
+	
 	//Web前端技能
 	context.beginPath();
 	context.font ="22px 微软雅黑";
@@ -134,7 +156,7 @@ function draw2(){
 	context.strokeStyle="rgba(146,199,230,0.3)";
 	context.beginPath();
 	for(var i=0;i<6;i++){
-		context.lineTo(baseX+Math.cos(Math.PI/6+i*Math.PI/3)*length*data[i].value/100,baseY+Math.sin(Math.PI/6+i*Math.PI/3)*length*data[i].value/100);
+		context.lineTo(baseX+Math.cos(Math.PI/6+i*Math.PI/3)*length*data2[i].value/100,baseY+Math.sin(Math.PI/6+i*Math.PI/3)*length*data2[i].value/100);
 	}
 	context.closePath();
 	context.fill();
@@ -167,7 +189,7 @@ function draw2(){
 		context.font ="14px Arial";
 		context.fillStyle="black";
 		context.textAlign='center';
-		context.fillText(data[i].name,baseX+Math.cos(Math.PI/6+i*Math.PI/3)*(length+25),baseY+Math.sin(Math.PI/6+i*Math.PI/3)*(length+18)+5);
+		context.fillText(data2[i].name,baseX+Math.cos(Math.PI/6+i*Math.PI/3)*(length+25),baseY+Math.sin(Math.PI/6+i*Math.PI/3)*(length+18)+5);
 	}
 	context.closePath();
 	context.stroke();
