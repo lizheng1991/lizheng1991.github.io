@@ -1,6 +1,6 @@
 window.onload=function(){
-	draw1();
-	draw2();
+	//draw1();
+	//draw2();
 	window.onresize();
 }
 window.onresize = function(){
