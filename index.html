@@ -1,40 +1,95 @@
-<!DOCTYPE HTML>  
-<html lang="zh-CN">  
-<head>  
-    <meta charset="UTF-8">  
-    <title>VPN申请</title>  
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1,user-scalable=no">
-	<style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title></title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+  *{margin:0;padding:0;box-sizing: border-box;}
+  html{
+    padding:24px;
+  }
+  .row{display:flex;font-size:14px;line-height: 32px;padding:8px 0px;}
+  .left{width:80px}
+  .right{flex:1}
+  .right input{
+    width:100%;
+    height: 32px;
+    line-height: 32px;
+    padding: 4px 7px;
+    font-size: 12px;
+    border: 1px solid #dcdee2;
+    border-radius: 4px;
+    color: #515a6e;
+    background-color: #fff;
+    background-image: none;
+    position: relative;
+    cursor: text;
+    transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+  }
+  button{
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 5px 15px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: color .2s linear,background-color .2s linear,border .2s linear,box-shadow .2s linear;
+    color: #515a6e;
+    background-color: #fff;
+    border: 1px solid #dcdee2;
+    color: #fff;
+    background-color: #2d8cf0;
+    border-color: #2d8cf0;
+  }
+  </style>
+  <script>
+  function calc(){
+  let now = Number(document.getElementById('now').value);
+  let add = Number(document.getElementById('add').value);
+  let rate = Number(document.getElementById('rate').value);
+  let years = Number(document.getElementById('years').value);
+  document.getElementById('result').innerText = Math.floor(getM(now,add,rate,years));
+}
 
-	.clearfix:after {       
-	    content: ".";     /*内容为“.”就是一个英文的句号而已。也可以不写。*/
-	    display: block;   /*加入的这个元素转换为块级元素。*/
-	    clear: both;     /*清除左右两边浮动。*/
-	    visibility: hidden;      /*可见度设为隐藏。注意它和display:none;是有区别的。visibility:hidden;仍然占据空间，只是看不到而已；*/
-	    line-height: 0;    /*行高为0；*/
-	    height: 0;     /*高度为0；*/
-	    font-size:0;    /*字体大小为0；*/
-	}
-	.clearfix { *zoom:1;}   /*这是针对于IE6的，因为IE6不支持*/
+function getM(now,add,rate,years){
+  let result = now;
+  for(let i=0; i < years; i++) {
+    result+= result*rate + add;
+  }
+  return result;
+}
+  </script>
+</head>
+<body>
+  <div style="padding:12px;font-size:20px;text-align:center;">小婊砸计算器</div>
+  <div class="row">
+    <div class="left">本金</div>
+    <div class="right"><input id="now" value="500000" /></div>
+  </div>
+  <div class="row">
+    <div class="left">每年存入</div>
+    <div class="right"><input id="add" value="170000" /></div>
+  </div>
+  <div class="row">
+    <div class="left">利率</div>
+    <div class="right"><input id="rate" value="0.042" /></div>
+  </div>
+  <div class="row">
+    <div class="left">持续年数</div>
+    <div class="right"><input id="years" value="1" /></div>
+  </div>
+  <div style="text-align:center;padding:12px 0"><button onclick="calc()">计 算</button></div>
+  <p id="result" style="padding:12px;text-align:center;font-size:20px"></p>
 
-	.shishi{
-		background-color:blue;
-	}
-	.shishi:hover{
-		background-color: red;
-	}
-	</style>
-</head>  
-<body ontouchstart>
-	<div class="wrapper" style="margin:20px 20px">
-		<div class="shishi">点击1</div>
-	</div>
-	<!-- 功能Js -->
-	<script type="text/javascript">
-	$(window).ready(function(){
-		
-	});
-	</script > 
-</body>  
-
-</html>  
+</body>
+</html>
